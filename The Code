@@ -1,0 +1,29 @@
+// Java code for solving the LeetCode Problem 22. Generate Parentheses. 
+
+class Solution {
+    public List<String> generateParenthesis(int n) {
+
+        List<String> result = new ArrayList<>();
+
+        generateParenthesesHelper(result, "", 0, 0, n);
+
+        return result;
+    }
+
+    public void generateParenthesesHelper(List<String> result, String current, int openCount, int closedCount, int pairNumber){
+
+        if(current.length() == 2*pairNumber){
+            result.add(current);
+            return;
+        }
+
+        if(openCount < pairNumber){
+            generateParenthesesHelper(result, current + "(", openCount + 1, closedCount, pairNumber);
+        }
+
+        if(openCount > closedCount){
+            generateParenthesesHelper(result, current + ")", openCount, closedCount + 1, pairNumber);
+        }
+    }
+}
+//Runtime is 1 ms and memory used is 43.31MB. 
